@@ -1165,7 +1165,169 @@ button,input,select,textarea{
   }
 
 
+/* ===== 3D SHOWROOM INTRO ===== */
+#intro{
+  position:fixed; inset:0; z-index:99999; overflow:hidden;
+  background:#05070b; color:#fff; display:block;
+  perspective:1100px; transition:opacity .9s ease,visibility .9s ease;
+}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+
+.intro-scene{
+  position:absolute; inset:0; overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 24%,rgba(255,255,255,.10),transparent 18%),
+    linear-gradient(#07101b 0%,#111827 48%,#020617 100%);
+}
+.intro-stars{
+  position:absolute; inset:0; opacity:.45;
+  background-image:radial-gradient(#fff 1px,transparent 1px),radial-gradient(#94a3b8 1px,transparent 1px);
+  background-size:95px 95px,145px 145px;
+  background-position:10px 20px,55px 80px;
+}
+.intro-road{
+  position:absolute; left:-15%; right:-15%; bottom:-18%; height:58%;
+  transform:perspective(650px) rotateX(63deg);
+  transform-origin:center bottom;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 8%,rgba(255,255,255,.08) 8% 8.35%,transparent 8.35% 16%),
+    linear-gradient(#111827,#030712);
+  box-shadow:0 -30px 80px rgba(0,0,0,.55);
+}
+.intro-road:after{
+  content:""; position:absolute; left:50%; top:0; width:7px; height:100%;
+  transform:translateX(-50%);
+  background:repeating-linear-gradient(to bottom,#f8fafc 0 70px,transparent 70px 145px);
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.35));
+}
+.intro-building{
+  position:absolute; left:50%; top:11%; width:min(820px,92vw); height:min(390px,50vh);
+  transform:translateX(-50%) translateZ(0);
+  background:linear-gradient(145deg,#263244,#0f172a 58%,#020617);
+  border:2px solid rgba(148,163,184,.22);
+  border-radius:12px 12px 4px 4px;
+  box-shadow:0 35px 90px rgba(0,0,0,.6),inset 0 0 70px rgba(255,255,255,.035);
+}
+.intro-building:before{
+  content:""; position:absolute; left:3%; right:3%; top:-17px; height:17px;
+  background:linear-gradient(#475569,#1e293b);
+  transform:skewX(-20deg); transform-origin:left bottom;
+  border-radius:4px 4px 0 0;
+}
+.intro-sign{
+  position:absolute; left:50%; top:7%; transform:translateX(-50%);
+  padding:13px 28px; white-space:nowrap;
+  font-size:clamp(20px,4vw,42px); font-weight:950; letter-spacing:.05em;
+  color:#fff; background:linear-gradient(180deg,#1e3a8a,#0f172a);
+  border:1px solid rgba(125,211,252,.55); border-radius:8px;
+  box-shadow:0 0 30px rgba(34,211,238,.28),inset 0 0 20px rgba(59,130,246,.18);
+  text-shadow:0 0 16px rgba(125,211,252,.75);
+}
+.intro-sign small{display:block;text-align:center;font-size:.32em;letter-spacing:.28em;color:#67e8f9;margin-top:5px}
+.intro-showroom{
+  position:absolute; left:8%; right:8%; bottom:0; height:62%;
+  background:linear-gradient(180deg,#111827,#020617);
+  border:1px solid rgba(148,163,184,.25); border-bottom:0;
+  display:flex; justify-content:center; align-items:flex-end; overflow:hidden;
+}
+.intro-glass{
+  position:absolute; inset:7% 4% 0;
+  background:linear-gradient(120deg,rgba(125,211,252,.10),rgba(15,23,42,.18));
+  border:2px solid rgba(186,230,253,.22);
+  box-shadow:inset 0 0 35px rgba(125,211,252,.07);
+}
+.intro-door{
+  position:absolute; bottom:0; width:28%; height:92%; z-index:5;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.10),transparent 8%,transparent 92%,rgba(255,255,255,.08)),
+    repeating-linear-gradient(90deg,rgba(148,163,184,.16) 0 2px,transparent 2px 54px),
+    linear-gradient(135deg,#334155,#0f172a);
+  border:2px solid #64748b;
+  box-shadow:inset 0 0 35px rgba(0,0,0,.55);
+  transition:transform 1.35s cubic-bezier(.2,.8,.2,1);
+}
+.intro-door.left{left:22%;transform-origin:left center}
+.intro-door.right{right:22%;transform-origin:right center}
+#intro.doors-open .intro-door.left{transform:perspective(700px) rotateY(-78deg)}
+#intro.doors-open .intro-door.right{transform:perspective(700px) rotateY(78deg)}
+.intro-handle{
+  position:absolute; top:52%; width:10px; height:55px; border-radius:8px;
+  background:#cbd5e1; box-shadow:0 0 12px rgba(255,255,255,.35);
+}
+.intro-door.left .intro-handle{right:10px}
+.intro-door.right .intro-handle{left:10px}
+.intro-interior{
+  position:absolute; inset:15% 12% 0; z-index:2;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(34,211,238,.35),transparent 20%),
+    linear-gradient(#0b1220,#020617);
+}
+.intro-floor-light{
+  position:absolute; left:18%; right:18%; bottom:8%; height:7px;
+  background:#22d3ee; box-shadow:0 0 25px #22d3ee,0 0 55px rgba(34,211,238,.7);
+}
+.intro-car{
+  position:absolute; z-index:20; bottom:7%; width:230px; height:105px;
+  filter:drop-shadow(0 22px 12px rgba(0,0,0,.7));
+  transition:transform 1.7s cubic-bezier(.18,.8,.2,1),opacity .5s;
+}
+.intro-car .body{
+  position:absolute; left:8%; bottom:20px; width:84%; height:45px;
+  border-radius:24px 45px 15px 15px;
+  background:linear-gradient(155deg,#f8fafc 0%,#94a3b8 32%,#334155 70%,#020617 100%);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:inset 0 5px 10px rgba(255,255,255,.35),inset 0 -10px 18px rgba(0,0,0,.5);
+}
+.intro-car .roof{
+  position:absolute; left:30%; bottom:57px; width:42%; height:38px;
+  border-radius:40px 55px 5px 5px;
+  transform:skewX(-8deg);
+  background:linear-gradient(135deg,#93c5fd,#0f172a 72%);
+  border:1px solid rgba(191,219,254,.65);
+}
+.intro-car .wheel{
+  position:absolute; bottom:8px; width:35px; height:35px; border-radius:50%;
+  background:radial-gradient(circle,#cbd5e1 0 18%,#0f172a 19% 48%,#020617 49%);
+  border:3px solid #475569;
+}
+.intro-car .wheel.a{left:30px}.intro-car .wheel.b{right:30px}
+.intro-car .lamp{
+  position:absolute; right:9%; bottom:39px; width:17px; height:10px; border-radius:50%;
+  background:#fff; box-shadow:0 0 18px #fff,0 0 35px #67e8f9;
+}
+.intro-car.car1{left:-28%;transform:scale(.72)}
+.intro-car.car2{right:-30%;transform:scale(.58) scaleX(-1)}
+#intro.cars-moving .car1{transform:translateX(185vw) scale(.95)}
+#intro.cars-moving .car2{transform:translateX(-165vw) scale(.78) scaleX(-1)}
+.intro-title{
+  position:absolute; left:50%; top:78%; transform:translate(-50%,-50%);
+  z-index:40; text-align:center; white-space:nowrap;
+  opacity:0; transition:opacity .6s ease .2s;
+}
+#intro.doors-open .intro-title{opacity:1}
+.intro-title h1{
+  margin:0; font-size:clamp(24px,5vw,48px); font-weight:950; letter-spacing:.03em;
+  text-shadow:0 4px 20px #000,0 0 20px rgba(34,211,238,.4);
+}
+.intro-title p{margin:7px 0 0;color:#a5f3fc;font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+.intro-loading{
+  position:absolute; z-index:50; left:50%; bottom:7%; transform:translateX(-50%);
+  width:min(330px,70vw); text-align:center;color:#cbd5e1;font-size:10px;letter-spacing:.15em;
+}
+.intro-loading-bar{height:3px;margin-top:9px;background:#1e293b;border-radius:9px;overflow:hidden}
+.intro-loading-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#4f46e5,#22d3ee);transition:width 3.4s linear}
+@media(max-width:600px){
+  .intro-building{top:14%;height:43vh}
+  .intro-showroom{left:5%;right:5%}
+  .intro-car{width:180px;height:85px}
+  .intro-car .body{height:37px}.intro-car .roof{bottom:49px}
+  .intro-car .wheel{width:29px;height:29px}
+  .intro-title{top:73%}
+}
+
 /* ===== PROFESSIONAL INTRO + HOME PAGE ===== */
+
+
 #intro{
   position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
   overflow:hidden;color:#fff;background:
@@ -1663,15 +1825,79 @@ button,input,select,textarea{
 }
 </style>
 
+
+<!-- ===== CINEMATIC REAL-LIFE 4D-STYLE WEBGL INTRO ===== -->
+<style>
+  #real4dCanvas{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:100000; display:block; background:#02040a;
+    opacity:1; transition:opacity 1.2s ease;
+  }
+  #real4dCanvas.done{opacity:0;pointer-events:none}
+  #real4dVignette{
+    position:fixed; inset:0; z-index:100001; pointer-events:none;
+    background:
+      radial-gradient(ellipse at center,transparent 38%,rgba(0,0,0,.32) 100%),
+      linear-gradient(180deg,rgba(0,0,0,.15),transparent 25%,transparent 75%,rgba(0,0,0,.28));
+    transition:opacity 1.2s ease;
+  }
+  #real4dVignette.done{opacity:0}
+  #real4dHUD{
+    position:fixed; z-index:100002; left:50%; bottom:5vh;
+    transform:translateX(-50%); color:#e2e8f0;
+    font:600 10px/1.4 system-ui,-apple-system,sans-serif;
+    letter-spacing:.28em; text-align:center; text-transform:uppercase;
+    text-shadow:0 2px 12px #000; pointer-events:none;
+    transition:opacity .5s ease;
+  }
+  #real4dHUD b{display:block;font-size:clamp(20px,4vw,42px);letter-spacing:.05em;color:#fff;margin-bottom:7px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
+
+
+<style>
+  #intro{display:none !important}
+</style>
 </head>
 <body>
-<div id="intro" aria-label="Loading Shree Charbhuja Sales">
-  <div class="intro-orb one"></div><div class="intro-orb two"></div><div class="intro-grid"></div>
-  <div class="intro-card">
-    <h1>Shree Charbhuja Sales</h1>
-    <p>Professional Billing • GST Invoices • Electronics & Home Appliances</p>
-    <div class="intro-loader"><span></span></div>
-    <div class="intro-status" id="introStatus">Preparing your billing workspace</div>
+<canvas id="real4dCanvas" aria-label="Cinematic 3D showroom intro"></canvas>
+<div id="real4dVignette"></div>
+<div id="real4dHUD"><b>SHREE CHARBHUJA SALES</b>Entering showroom</div>
+
+<div id="intro" aria-label="3D Shree Charbhuja Sales showroom intro">
+  <div class="intro-scene">
+    <div class="intro-stars"></div>
+    <div class="intro-road"></div>
+    <div class="intro-building">
+      <div class="intro-sign">SHREE CHARBHUJA SALES<small>SALES • SERVICE • BILLING</small></div>
+      <div class="intro-showroom">
+        <div class="intro-interior"></div>
+        <div class="intro-glass"></div>
+        <div class="intro-door left"><span class="intro-handle"></span></div>
+        <div class="intro-door right"><span class="intro-handle"></span></div>
+        <div class="intro-floor-light"></div>
+      </div>
+    </div>
+
+    <div class="intro-car car1" aria-hidden="true">
+      <div class="body"></div><div class="roof"></div>
+      <div class="wheel a"></div><div class="wheel b"></div><div class="lamp"></div>
+    </div>
+    <div class="intro-car car2" aria-hidden="true">
+      <div class="body"></div><div class="roof"></div>
+      <div class="wheel a"></div><div class="wheel b"></div><div class="lamp"></div>
+    </div>
+
+    <div class="intro-title">
+      <h1>SHREE CHARBHUJA SALES</h1>
+      <p>Welcome to your billing workspace</p>
+    </div>
+
+    <div class="intro-loading">
+      <span id="introStatus">DRIVING TO SHOWROOM...</span>
+      <div class="intro-loading-bar"><span id="introProgress"></span></div>
+    </div>
   </div>
 </div>
 <div id="addedMsg">✅ Added</div>
@@ -2501,20 +2727,457 @@ document.getElementById('printBtn').addEventListener('click',(e)=>{
 });
 restoreBillingDraft();
 
-/* ---------- start: hide intro ---------- */
+/* ---------- 3D showroom intro sequence ---------- */
 (function(){
   const intro=document.getElementById('intro');
   const status=document.getElementById('introStatus');
-  const messages=['Preparing your billing workspace','Loading product catalog','Checking invoice settings','Ready to bill'];
-  let n=0;
-  const timer=setInterval(()=>{
-    n++;
-    if(status) status.textContent=messages[Math.min(n,messages.length-1)];
-    if(n>=messages.length-1) clearInterval(timer);
-  },280);
-  setTimeout(()=>{ intro.classList.add('hide'); setTimeout(()=>intro.style.display='none',700); },1350);
+  const progress=document.getElementById('introProgress');
+  if(!intro) return;
+
+  // Phase 1: cars drive toward the showroom.
+  requestAnimationFrame(()=>{
+    intro.classList.add('cars-moving');
+    if(status) status.textContent='CARS APPROACHING SHOWROOM...';
+    if(progress) progress.style.width='42%';
+  });
+
+  // Phase 2: cars reach the entrance, then the center doors open.
+  setTimeout(()=>{
+    intro.classList.add('doors-open');
+    if(status) status.textContent='WELCOME TO SHREE CHARBHUJA SALES';
+    if(progress) progress.style.width='78%';
+  },1750);
+
+  // Phase 3: reveal the existing home/billing page.
+  setTimeout(()=>{
+    if(status) status.textContent='OPENING HOME PAGE...';
+    if(progress) progress.style.width='100%';
+  },2850);
+
+  setTimeout(()=>{
+    intro.classList.add('hide');
+    setTimeout(()=>{ intro.style.display='none'; },950);
+  },3900);
 })();
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+/* ===== CINEMATIC REAL-TIME 3D / "4D" INTRO =====
+   4D here means time-based cinematic motion + camera movement + lighting.
+*/
+(function(){
+  const intro=document.getElementById('intro');
+  if(!intro || !window.THREE) return;
+  const old=intro.innerHTML;
+  intro.innerHTML='<canvas id="real3DIntro"></canvas><div class="real3d-ui"><div class="real3d-brand">SHREE CHARBHUJA SALES</div><div class="real3d-sub">WELCOME</div><div class="real3d-progress"><i></i></div></div>';
+  intro.classList.remove('hide');
+  intro.style.display='block';
+
+  const canvas=document.getElementById('real3DIntro');
+  const scene=new THREE.Scene();
+  scene.background=new THREE.Color(0x05080d);
+  scene.fog=new THREE.Fog(0x05080d,35,180);
+  const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,500);
+  camera.position.set(0,6,54);
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth,innerHeight);
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.15;
+
+  const clock=new THREE.Clock();
+  const mats={
+    asphalt:new THREE.MeshStandardMaterial({color:0x070b12,roughness:.88,metalness:.05}),
+    wall:new THREE.MeshStandardMaterial({color:0x202936,roughness:.48,metalness:.18}),
+    glass:new THREE.MeshPhysicalMaterial({color:0x12364b,roughness:.08,metalness:.15,transmission:.08,transparent:true,opacity:.72}),
+    chrome:new THREE.MeshStandardMaterial({color:0xd8e1e8,roughness:.16,metalness:.9}),
+    black:new THREE.MeshStandardMaterial({color:0x030609,roughness:.3,metalness:.65}),
+    neon:new THREE.MeshStandardMaterial({color:0x22d3ee,emissive:0x22d3ee,emissiveIntensity:5,roughness:.2}),
+    white:new THREE.MeshStandardMaterial({color:0xf4f7fa,roughness:.2,metalness:.35}),
+    red:new THREE.MeshStandardMaterial({color:0x7f1111,roughness:.22,metalness:.5}),
+    tire:new THREE.MeshStandardMaterial({color:0x030303,roughness:.9}),
+    interior:new THREE.MeshStandardMaterial({color:0x080d16,roughness:.65})
+  };
+  function box(w,h,d,m,x=0,y=0,z=0){const q=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);q.position.set(x,y,z);q.castShadow=true;q.receiveShadow=true;scene.add(q);return q;}
+  function cyl(r,h,m,x=0,y=0,z=0){const q=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,32),m);q.position.set(x,y,z);q.castShadow=true;q.receiveShadow=true;scene.add(q);return q;}
+
+  // Ground / road
+  box(180,.35,190,mats.asphalt,0,-.25,-55);
+  const road=box(22,.03,180,new THREE.MeshStandardMaterial({color:0x11151b,roughness:.96}),0,-.05,-55);
+  for(let z=35;z>-145;z-=12) box(.18,.035,6,new THREE.MeshStandardMaterial({color:0xf6f7f8,emissive:0x222222}),0,.02,z);
+  for(let x of [-14,14]) for(let z=30;z>-130;z-=20){
+    cyl(.06,5,mats.neon,x,2.5,z); const l=new THREE.PointLight(0x22d3ee,3,14);l.position.set(x,3,z);scene.add(l);
+  }
+
+  // Store shell
+  box(62,18,7,mats.wall,0,9,-18);
+  box(66,1.2,9,mats.black,0,18.4,-18);
+  // illuminated sign
+  box(46,4.2,.35,mats.black,0,15.2,-14.35);
+  const sign=box(43,3.5,.08,mats.neon,0,15.2,-14.13);
+  // lettering via canvas texture
+  const tc=document.createElement('canvas');tc.width=1600;tc.height=180;const ctx=tc.getContext('2d');
+  ctx.fillStyle='#071018';ctx.fillRect(0,0,1600,180);ctx.font='900 76px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#ffffff';ctx.shadowColor='#22d3ee';ctx.shadowBlur=22;ctx.fillText('SHREE CHARBHUJA SALES',800,90);
+  const tex=new THREE.CanvasTexture(tc);tex.colorSpace=THREE.SRGBColorSpace;
+  const sm=new THREE.MeshBasicMaterial({map:tex,transparent:true});const lettering=new THREE.Mesh(new THREE.PlaneGeometry(42,4.7),sm);lettering.position.set(0,15.2,-13.95);scene.add(lettering);
+
+  // glass frontage + interior
+  box(48,12,.25,mats.glass,0,6,-14.15);
+  box(50,12,.25,mats.glass,-26,6,-14.15);box(50,12,.25,mats.glass,26,6,-14.15);
+  box(48,12,.3,mats.interior,0,6,-14.5);
+  for(let x=-22;x<=22;x+=11) box(.28,12,.45,mats.chrome,x,6,-13.8);
+  for(let x=-22;x<=22;x+=11){const l=new THREE.PointLight(0x8be9ff,2.2,16);l.position.set(x,8,-8);scene.add(l);}
+  // center split doors
+  const doorL=box(11,10,.45,mats.glass,-5.5,5,-13.75), doorR=box(11,10,.45,mats.glass,5.5,5,-13.75);
+  doorL.material=doorR.material=mats.glass;
+  doorL.userData.baseX=-5.5;doorR.userData.baseX=5.5;
+  box(.25,10,.5,mats.chrome,0,5,-13.55);
+  // showroom floor
+  box(46,.15,22,new THREE.MeshStandardMaterial({color:0x151c27,roughness:.55,metalness:.3}),0,.05,-3);
+  for(let x=-20;x<=20;x+=10) box(.12,.04,20,mats.neon,x,.16,-3);
+
+  // trees / street props
+  for(let x of [-34,34]) for(let z=20;z>-90;z-=28){
+    cyl(.32,5,new THREE.MeshStandardMaterial({color:0x3b2a1d,roughness:.9}),x,2.5,z);
+    const crown=new THREE.Mesh(new THREE.IcosahedronGeometry(2.5,1),new THREE.MeshStandardMaterial({color:0x183d28,roughness:.95}));crown.position.set(x,6,z);crown.scale.y=1.2;crown.castShadow=true;scene.add(crown);
+  }
+
+  // Real-time car model: body, cabin, wheels, lights, mirrors
+  function makeCar(color=0xffffff){
+    const g=new THREE.Group();
+    const bodyMat=new THREE.MeshPhysicalMaterial({color,metalness:.82,roughness:.2,clearcoat:1,clearcoatRoughness:.08});
+    const body=new THREE.Mesh(new THREE.BoxGeometry(5.8,1.15,2.35),bodyMat);body.position.y=1.15;body.castShadow=true;g.add(body);
+    const hood=new THREE.Mesh(new THREE.BoxGeometry(1.6,.55,2.2),bodyMat);hood.position.set(2.2,1.5,0);hood.rotation.z=-.03;hood.castShadow=true;g.add(hood);
+    const cabinMat=new THREE.MeshPhysicalMaterial({color:0x08111c,metalness:.25,roughness:.08,transmission:.12,transparent:true,opacity:.82});
+    const cabin=new THREE.Mesh(new THREE.BoxGeometry(2.9,1.2,2.0),cabinMat);cabin.position.set(-.45,2.05,0);cabin.rotation.z=.08;cabin.castShadow=true;g.add(cabin);
+    for(let x of [-1.9,1.9]) for(let z of [-1.12,1.12]){const w=new THREE.Mesh(new THREE.CylinderGeometry(.48,.48,.28,32),mats.tire);w.rotation.x=Math.PI/2;w.position.set(x,.55,z);w.castShadow=true;g.add(w);}
+    for(let z of [-.8,.8]){const h=new THREE.Mesh(new THREE.BoxGeometry(.25,.18,.42),mats.neon);h.position.set(2.93,1.3,z);g.add(h);}
+    for(let z of [-.9,.9]){const h=new THREE.Mesh(new THREE.BoxGeometry(.18,.18,.35),mats.red);h.position.set(-2.93,1.3,z);g.add(h);}
+    const mirrorMat=new THREE.MeshStandardMaterial({color:0x101820,metalness:.8,roughness:.2});
+    for(let z of [-1.3,1.3]){const m=new THREE.Mesh(new THREE.BoxGeometry(.38,.25,.2),mirrorMat);m.position.set(.15,2.15,z);g.add(m);}
+    g.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});
+    scene.add(g);return g;
+  }
+  const car1=makeCar(0xe8edf2),car2=makeCar(0x182230);
+  car1.position.set(-38,0,22);car1.rotation.y=Math.PI;
+  car2.position.set(38,0,4);car2.rotation.y=Math.PI;
+  car1.scale.setScalar(1.05);car2.scale.setScalar(.88);
+  const head1=new THREE.SpotLight(0xffffff,70,80,.25,.4,1);head1.position.set(-38,2,21);head1.target.position.set(0,1,-8);scene.add(head1,head1.target);
+  const head2=new THREE.SpotLight(0xdffbff,55,70,.25,.4,1);head2.position.set(38,2,3);head2.target.position.set(0,1,-8);scene.add(head2,head2.target);
+
+  // Lighting
+  scene.add(new THREE.HemisphereLight(0x9cc9ff,0x10131a,1.8));
+  const moon=new THREE.DirectionalLight(0xc9dcff,4);moon.position.set(-30,45,35);moon.castShadow=true;moon.shadow.mapSize.set(2048,2048);moon.shadow.camera.left=-70;moon.shadow.camera.right=70;moon.shadow.camera.top=70;moon.shadow.camera.bottom=-70;scene.add(moon);
+  const warm=new THREE.PointLight(0xff9d4d,9,55);warm.position.set(0,12,-7);scene.add(warm);
+
+  const ui=document.querySelector('.real3d-ui'),bar=ui&&ui.querySelector('i');
+  let t=0, phase=0;
+  function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);}
+  addEventListener('resize',resize);
+  function animate(){
+    requestAnimationFrame(animate); const dt=Math.min(clock.getDelta(),.033);t+=dt;
+    // Cinematic 4D timing: approach -> doors -> camera push -> reveal.
+    const p=Math.min(t/7.0,1);
+    if(t<3.2){
+      const q=Math.min(t/3.2,1); const e=1-Math.pow(1-q,3);
+      car1.position.x=-38+34*e;car1.position.z=22-26*e;
+      car2.position.x=38-33*e;car2.position.z=4-20*e;
+      camera.position.x=Math.sin(t*.25)*1.4;camera.position.z=54-8*e;camera.lookAt(0,5,-10);
+      if(bar)bar.style.width=(p*48)+'%';
+    } else if(t<5.0){
+      const q=Math.min((t-3.2)/1.8,1),e=1-Math.pow(1-q,3);
+      doorL.position.x=-5.5-5.2*e;doorR.position.x=5.5+5.2*e;
+      camera.position.set(0,5.6,46-8*e);camera.lookAt(0,5,-13);
+      if(bar)bar.style.width=(48+p*25)+'%';
+    } else {
+      const q=Math.min((t-5)/2,1),e=q*q*(3-2*q);
+      camera.position.set(0,5.3,38-12*e);camera.lookAt(0,4.8,-13);
+      if(bar)bar.style.width='100%';
+      if(ui){ui.style.opacity=String(1-e);}
+    }
+    // subtle wheel rotation and environmental motion
+    [car1,car2].forEach(c=>c.traverse(o=>{if(o.isMesh&&o.geometry.type==='CylinderGeometry')o.rotation.z+=dt*4;}));
+    renderer.render(scene,camera);
+    if(t>7.2){intro.classList.add('hide');setTimeout(()=>intro.style.display='none',900);}
+  }
+  animate();
+})();
+</script>
+<style>
+/* ===== REAL 3D INTRO OVERLAY ===== */
+#real3DIntro{position:absolute;inset:0;width:100%;height:100%;display:block}
+.real3d-ui{position:absolute;inset:auto 0 8%;z-index:10;text-align:center;pointer-events:none;transition:opacity .7s ease}
+.real3d-brand{font:900 clamp(24px,5vw,54px)/1.05 Arial,sans-serif;letter-spacing:.05em;color:#fff;text-shadow:0 0 24px rgba(34,211,238,.55),0 4px 20px #000}
+.real3d-sub{margin-top:9px;font:700 11px Arial,sans-serif;letter-spacing:.42em;color:#67e8f9}
+.real3d-progress{width:min(340px,62vw);height:3px;margin:18px auto 0;background:rgba(255,255,255,.13);overflow:hidden;border-radius:99px}
+.real3d-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,#4f46e5,#22d3ee,#fff);box-shadow:0 0 14px #22d3ee;transition:width .2s linear}
+</style>
+
+<script>
+/* ===== REAL-LIFE VIDEO-STYLE 4D CINEMATIC INTRO =====
+   Single-file WebGL sequence:
+   - HDR-like sky
+   - wet asphalt reflections
+   - showroom architecture
+   - animated vehicles
+   - headlights
+   - volumetric-style light cones
+   - camera dolly / shake / depth transitions
+   - automatic transition to the existing home page
+*/
+(function(){
+  const canvas=document.getElementById('real4dCanvas');
+  const vignette=document.getElementById('real4dVignette');
+  const hud=document.getElementById('real4dHUD');
+  if(!canvas || !window.THREE) return;
+
+  const THREE=window.THREE;
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth,innerHeight);
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.18;
+
+  const scene=new THREE.Scene();
+  scene.background=new THREE.Color(0x02050b);
+  scene.fog=new THREE.FogExp2(0x07111e,.018);
+
+  const camera=new THREE.PerspectiveCamera(46,innerWidth/innerHeight,.1,1200);
+  camera.position.set(0,4.2,34);
+
+  // Moon / sky glow.
+  const hemi=new THREE.HemisphereLight(0x9fc7ff,0x10141b,1.35);
+  scene.add(hemi);
+  const moon=new THREE.DirectionalLight(0xc9dcff,2.6);
+  moon.position.set(-25,35,25);
+  moon.castShadow=true;
+  moon.shadow.mapSize.set(2048,2048);
+  moon.shadow.camera.left=-70; moon.shadow.camera.right=70;
+  moon.shadow.camera.top=70; moon.shadow.camera.bottom=-70;
+  scene.add(moon);
+
+  // Road.
+  const roadMat=new THREE.MeshStandardMaterial({
+    color:0x090d13,roughness:.17,metalness:.52
+  });
+  const road=new THREE.Mesh(new THREE.PlaneGeometry(150,220),roadMat);
+  road.rotation.x=-Math.PI/2; road.position.y=0; road.position.z=-55;
+  road.receiveShadow=true; scene.add(road);
+
+  // Road lane markings.
+  const laneMat=new THREE.MeshStandardMaterial({color:0xf4f7fb,roughness:.4,emissive:0x111111});
+  for(let z=15;z>-125;z-=12){
+    const mark=new THREE.Mesh(new THREE.BoxGeometry(.18,.025,5),laneMat);
+    mark.position.set(0,.025,z); scene.add(mark);
+  }
+
+  // Sidewalks.
+  const sideMat=new THREE.MeshStandardMaterial({color:0x1a2029,roughness:.7,metalness:.15});
+  [-10,10].forEach(x=>{
+    const s=new THREE.Mesh(new THREE.BoxGeometry(5,.35,180),sideMat);
+    s.position.set(x,-.15,-45);s.receiveShadow=true;scene.add(s);
+  });
+
+  // Showroom shell.
+  const shellMat=new THREE.MeshStandardMaterial({
+    color:0x111827,roughness:.24,metalness:.55
+  });
+  const shell=new THREE.Mesh(new THREE.BoxGeometry(34,16,9),shellMat);
+  shell.position.set(0,8,-40); shell.castShadow=true; shell.receiveShadow=true; scene.add(shell);
+
+  // Glass facade.
+  const glassMat=new THREE.MeshPhysicalMaterial({
+    color:0x9bdcff,metalness:.08,roughness:.08,transmission:.35,
+    transparent:true,opacity:.46,thickness:.12,ior:1.45
+  });
+  const facade=new THREE.Mesh(new THREE.BoxGeometry(27,11,.16),glassMat);
+  facade.position.set(0,6.2,-35.42); scene.add(facade);
+
+  // Interior floor and wall.
+  const interiorMat=new THREE.MeshStandardMaterial({color:0x030711,roughness:.34,metalness:.4});
+  const floor=new THREE.Mesh(new THREE.BoxGeometry(27,.15,8),interiorMat);
+  floor.position.set(0,.08,-35);scene.add(floor);
+
+  // Sign.
+  const signCanvas=document.createElement('canvas');
+  signCanvas.width=1400; signCanvas.height=220;
+  const ctx=signCanvas.getContext('2d');
+  ctx.fillStyle='#07111d';ctx.fillRect(0,0,1400,220);
+  ctx.strokeStyle='#38bdf8';ctx.lineWidth=6;ctx.strokeRect(5,5,1390,210);
+  ctx.font='900 86px Arial';ctx.textAlign='center';ctx.fillStyle='#ffffff';
+  ctx.fillText('SHREE CHARBHUJA SALES',700,120);
+  ctx.font='700 26px Arial';ctx.fillStyle='#67e8f9';
+  ctx.fillText('SALES  •  SERVICE  •  BILLING',700,172);
+  const signTex=new THREE.CanvasTexture(signCanvas);
+  signTex.colorSpace=THREE.SRGBColorSpace;
+  const signMat=new THREE.MeshBasicMaterial({map:signTex});
+  const sign=new THREE.Mesh(new THREE.PlaneGeometry(19,3),signMat);
+  sign.position.set(0,14.3,-35.1);scene.add(sign);
+
+  // Doors: two physically separated panels.
+  const doorMat=new THREE.MeshPhysicalMaterial({
+    color:0x17304a,metalness:.72,roughness:.16,transmission:.2,
+    transparent:true,opacity:.78
+  });
+  const leftDoor=new THREE.Mesh(new THREE.BoxGeometry(6.3,10.2,.25),doorMat);
+  const rightDoor=leftDoor.clone();
+  leftDoor.position.set(-3.18,5.25,-35.25);
+  rightDoor.position.set(3.18,5.25,-35.25);
+  scene.add(leftDoor,rightDoor);
+
+  // Door frames.
+  const frameMat=new THREE.MeshStandardMaterial({color:0x64748b,metalness:.9,roughness:.22});
+  [-6.35,0,6.35].forEach(x=>{
+    const f=new THREE.Mesh(new THREE.BoxGeometry(.12,10.7,.4),frameMat);
+    f.position.set(x,5.35,-35.12);scene.add(f);
+  });
+  const topFrame=new THREE.Mesh(new THREE.BoxGeometry(12.8,.18,.4),frameMat);
+  topFrame.position.set(0,10.6,-35.12);scene.add(topFrame);
+
+  // Interior ceiling light strips.
+  const stripMat=new THREE.MeshStandardMaterial({color:0xbff7ff,emissive:0x38bdf8,emissiveIntensity:7});
+  [-7,-3.5,0,3.5,7].forEach(x=>{
+    const strip=new THREE.Mesh(new THREE.BoxGeometry(.08,.05,7),stripMat);
+    strip.position.set(x,10.2,-35);scene.add(strip);
+  });
+
+  // Decorative bollards and palms.
+  const chrome=new THREE.MeshStandardMaterial({color:0xb9c3d0,metalness:.95,roughness:.16});
+  for(let x of [-9,9]){
+    const post=new THREE.Mesh(new THREE.CylinderGeometry(.18,.22,1.2,24),chrome);
+    post.position.set(x,.6,-31);post.castShadow=true;scene.add(post);
+  }
+
+  // Car factory: stylized but physically lit geometry.
+  function makeCar(scale=1){
+    const g=new THREE.Group();
+    const bodyMat=new THREE.MeshPhysicalMaterial({
+      color:0x141b25,metalness:.9,roughness:.16,clearcoat:1,clearcoatRoughness:.08
+    });
+    const glass=new THREE.MeshPhysicalMaterial({
+      color:0x07111e,metalness:.35,roughness:.05,transmission:.18,transparent:true,opacity:.88
+    });
+    const body=new THREE.Mesh(new THREE.BoxGeometry(4.7,1.0,8.7),bodyMat);
+    body.position.y=1.25;body.castShadow=true;g.add(body);
+    const hood=new THREE.Mesh(new THREE.BoxGeometry(4.45,.55,2.3),bodyMat);
+    hood.position.set(0,1.85,2.65);hood.castShadow=true;g.add(hood);
+    const roof=new THREE.Mesh(new THREE.BoxGeometry(3.25,.7,3.1),glass);
+    roof.position.set(0,2.1,-.15);roof.rotation.x=.04;g.add(roof);
+    const wheelMat=new THREE.MeshStandardMaterial({color:0x030407,metalness:.9,roughness:.2});
+    [-2.0,2.0].forEach(z=>[-2.42,2.42].forEach(x=>{
+      const w=new THREE.Mesh(new THREE.CylinderGeometry(.72,.72,.34,32),wheelMat);
+      w.rotation.z=Math.PI/2;w.position.set(x,.72,z);w.castShadow=true;g.add(w);
+    }));
+    const headMat=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0x9de8ff,emissiveIntensity:8});
+    [-1.5,1.5].forEach(x=>{
+      const h=new THREE.Mesh(new THREE.BoxGeometry(.55,.2,.08),headMat);
+      h.position.set(x,1.55,4.4);g.add(h);
+      const light=new THREE.SpotLight(0xbfefff,14,30,Math.PI/10,.5,1.5);
+      light.position.set(x,1.6,4.5);light.target.position.set(x,1,-5);g.add(light,light.target);
+    });
+    g.scale.setScalar(scale);
+    return g;
+  }
+
+  const carA=makeCar(.9); carA.position.set(-8,0,24); carA.rotation.y=.02;scene.add(carA);
+  const carB=makeCar(.72); carB.position.set(10,0,2); carB.rotation.y=Math.PI;scene.add(carB);
+  const carC=makeCar(.58); carC.position.set(-12,0,-12); carC.rotation.y=.02;scene.add(carC);
+
+  // Street lights.
+  const poleMat=new THREE.MeshStandardMaterial({color:0x202733,metalness:.8,roughness:.25});
+  [-14,14].forEach(x=>{
+    for(let z=15;z>-100;z-=22){
+      const pole=new THREE.Mesh(new THREE.CylinderGeometry(.08,.12,7,16),poleMat);
+      pole.position.set(x,3.5,z);pole.castShadow=true;scene.add(pole);
+      const lamp=new THREE.PointLight(0xffd6a0,4.2,18,2);
+      lamp.position.set(x,7,z);scene.add(lamp);
+      const bulb=new THREE.Mesh(
+        new THREE.SphereGeometry(.15,12,12),
+        new THREE.MeshBasicMaterial({color:0xffe2b0})
+      );
+      bulb.position.copy(lamp.position);scene.add(bulb);
+    }
+  });
+
+  // Tiny particles for atmospheric depth.
+  const pCount=1200, pos=new Float32Array(pCount*3);
+  for(let i=0;i<pCount;i++){
+    pos[i*3]=(Math.random()-.5)*80;
+    pos[i*3+1]=Math.random()*25;
+    pos[i*3+2]=-Math.random()*150+25;
+  }
+  const pg=new THREE.BufferGeometry();
+  pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  scene.add(new THREE.Points(pg,new THREE.PointsMaterial({
+    color:0x9ddcff,size:.035,transparent:true,opacity:.42
+  })));
+
+  // Animate cinematic timeline.
+  const clock=new THREE.Clock();
+  const start=performance.now();
+  let finished=false;
+
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+  function animate(){
+    requestAnimationFrame(animate);
+    const elapsed=(performance.now()-start)/1000;
+    const t=Math.min(elapsed/7.8,1);
+
+    // Camera flies toward showroom with subtle handheld movement.
+    const camZ=34 + (1-ease(Math.min(t/.7,1)))*0 - ease(Math.min(t/.68,1))*69;
+    camera.position.z=camZ;
+    camera.position.x=Math.sin(elapsed*1.25)*.16*(1-t);
+    camera.position.y=4.2 + Math.sin(elapsed*1.8)*.05;
+    camera.lookAt(0,5.2,-35);
+
+    // Cars drive toward the showroom.
+    carA.position.z=24-ease(Math.min(elapsed/4.2,1))*54;
+    carA.position.x=-8+ease(Math.min(elapsed/4.2,1))*4;
+    carA.rotation.y=.03;
+    carB.position.z=2-ease(Math.min(elapsed/3.2,1))*34;
+    carC.position.z=-12-ease(Math.min(elapsed/2.7,1))*23;
+
+    // Door opens from the center.
+    const doorT=Math.max(0,Math.min(1,(elapsed-4.35)/1.65));
+    const d=ease(doorT);
+    leftDoor.position.x=-3.18-5.0*d;
+    rightDoor.position.x=3.18+5.0*d;
+    leftDoor.rotation.y=-.16*d;
+    rightDoor.rotation.y=.16*d;
+
+    // Cinematic exposure pulse.
+    renderer.toneMappingExposure=1.1 + Math.sin(elapsed*2.2)*.035;
+
+    if(elapsed>6.1 && hud){
+      hud.innerHTML='<b>SHREE CHARBHUJA SALES</b>Welcome';
+    }
+
+    if(elapsed>7.5 && !finished){
+      finished=true;
+      if(hud) hud.style.opacity='0';
+      if(vignette) vignette.classList.add('done');
+      canvas.classList.add('done');
+      setTimeout(()=>{canvas.style.display='none';vignette.style.display='none';hud.style.display='none';},1300);
+    }
+    renderer.render(scene,camera);
+  }
+  animate();
+
+  addEventListener('resize',()=>{
+    camera.aspect=innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    renderer.setSize(innerWidth,innerHeight);
+  });
+})();
+</script>
+
 </body>
 </html>
